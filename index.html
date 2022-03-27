@@ -12,21 +12,30 @@
 <body>
     <header>
         <p class="score">view high score</p>
+        <h1 class="title">Code Quiz</h1>
         <p class="timer">timer</p>
     </header>
     <div class="container">
         <div class="quiz" id="start-page">
-            <button class="start">Start</button>
+            <div class="start-page-content">
+                <h1>Test your JavaScript knowledge!</h1>
+                <button class="start">Start</button>
+            </div>
         </div>
         <div class="quiz hidden" id="quiz-page">
+
             <h1 id="question">QUESTION</h1>
-            <ul>
-                <li><button class="answer"></button></li>
-                <li><button class="answer"></button></li>
-                <li><button class="answer"></button></li>
-                <li><button class="answer"></button></li>
-            </ul>
-            <button class="nextQ">next</button>
+            <div class="answer-section">
+                <ul>
+                    <li><button class="answer"></button></li>
+                    <li><button class="answer"></button></li>
+                    <li><button class="answer"></button></li>
+                    <li><button class="answer"></button></li>
+                </ul>
+            </div>
+            <hr>
+            <div class="continue">
+                <button class="next-question">next</button></div>
         </div>
     </div>
     </div>

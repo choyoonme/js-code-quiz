@@ -5,30 +5,54 @@ body {
 }
 
 header {
-    background-color: gray;
+    padding: 0 25px;
     display: flex;
     justify-content: space-between;
-}
-
-.container {
-    background-color: aqua;
+    background-color: antiquewhite;
 }
 
 ul {
     list-style: none;
 }
 
+.container {
+    display: flex;
+    align-items: center;
+}
+
 .quiz {
     width: 600px;
     height: 400px;
-    margin: 0 auto;
-    background-color: wheat;
+    margin: 10px auto;
+    border: solid 2px black;
+}
+
+#question {
+    padding: 20px;
 }
 
 .answer {
-    background-color: green;
+    background-color: cadetblue;
     color: black;
     margin: 5px;
+    border-radius: 5px;
+}
+
+.answer-section {
+    padding: 15px;
+}
+
+.continue {
+    display: flex;
+    justify-content: center;
+}
+
+.next-question {
+    background-color: aliceblue;
+    color: black;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
 }
 
 .hidden {
@@ -36,6 +60,20 @@ ul {
 }
 
 .start {
-    display: block;
-    margin: 0 auto;
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: aliceblue;
+    margin-top: 95px;
+}
+
+.start-page-content {
+    margin-top: 85px;
+    text-align: center;
+}
+
+.submit {
+    background-color: aliceblue color: black;
 }

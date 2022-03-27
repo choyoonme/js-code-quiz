@@ -72,7 +72,7 @@ function submitInitials() {
 //add event listeners to start, next, submit, and view high score buttons
 document.querySelector(".start").addEventListener("click", startQuiz);
 
-document.querySelector(".nextQ").addEventListener("click", continueQuiz);
+document.querySelector(".next-question").addEventListener("click", continueQuiz);
 
 document.querySelector(".submit").addEventListener("click", submitInitials);
 
