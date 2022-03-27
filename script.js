@@ -16,25 +16,30 @@
 -store the count of correctly answered questions and submit initials in localStorage    
 */
 
-// use object variable write an array and use for loop to apply to buttons
 
 
+const answerButtons = document.querySelectorAll(".answer");
+let currentQuestion = 0;
+
+// use object variable write an array
 const questions = [{
     text: "Inside which HTML element do we put JavaScript?",
     choices: ["<link>", "<script>", "<java>", "<js>"],
     answer: 2,
 }]
-
-let currentQuestion = 0;
-
 const question = questions[currentQuestion];
 //target html text content and assign to current indexed question.key
-document.querySelector("#question").textContent = question.text
 
-const answerButtons = document.querySelectorAll(".answer");
-for (let i = 0; i < question.choices.length; i++) {
-    //define variables for each button and assigned array of choices
-    const answerButton = answerButtons[i];
-    const choice = question.choices[i];
-    answerButton.textContent = choice;
+function populateButtons() {
+    document.querySelector("#question").textContent = question.text
+
+    //use for loop to apply to buttons
+    for (let i = 0; i < question.choices.length; i++) {
+        //define variables for each button and assigned array of choices
+        const answerButton = answerButtons[i];
+        const choice = question.choices[i];
+        answerButton.textContent = choice;
+    }
 }
+
+document.querySelector(".nextQ").addEventListener("click", populateButtons);
