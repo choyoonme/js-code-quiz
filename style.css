@@ -4,9 +4,24 @@ body {
     color: black;
 }
 
+header {
+    background-color: gray;
+    display: flex;
+    justify-content: space-between;
+}
+
 .container {
+    background-color: aqua;
+}
+
+ul {
+    list-style: none;
+}
+
+.quiz {
     width: 600px;
     height: 400px;
+    margin: 0 auto;
     background-color: wheat;
 }
 
@@ -15,6 +30,5 @@ body {
     height: 25px;
     background-color: green;
     color: black;
-    display: flex;
-    flex-direction: column;
+    margin: 5px;
 }

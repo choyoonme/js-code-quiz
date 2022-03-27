@@ -10,20 +10,25 @@
 </head>
 
 <body>
-    <p class="score">view high score</p>
-    <p class="timer">timer</p>
+    <header>
+        <p class="score">view high score</p>
+        <p class="timer">timer</p>
+    </header>
     <div class="container">
-        <button class="start">Begin Quiz</button>
-        <p class="question">QUESTION</p>
-        <div class="choices">
-            <button class="answer" id="a"></button>
-            <button class="answer" id="b"></button>
-            <button class="answer" id="c"></button>
-            <button class="answer" id="d"></button>
-
+        <div class="quiz">
+            <h1 id="question">QUESTION</h1>
+            <ul>
+                <li><button class="answer" id="a">a.</button></li>
+                <li><button class="answer" id="b">b.</button></li>
+                <li><button class="answer" id="c">c.</button></li>
+                <li><button class="answer" id="d">d.</button></li>
+            </ul>
+            <button class="start">Begin Quiz</button>
         </div>
     </div>
-    <input type="test" />
+    </div>
+
+    <input type="text" />
     <button class="submit">submit</button>
     <script src="script.js"></script>
 </body>
