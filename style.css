@@ -26,8 +26,6 @@ ul {
 }
 
 .answer {
-    width: 150px;
-    height: 25px;
     background-color: green;
     color: black;
     margin: 5px;
