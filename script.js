@@ -1,7 +1,7 @@
 //declare variables in global scope
 const answerButtons = document.querySelectorAll(".answer");
 let currentQuestion = 0;
-let currentAnswer = [];
+let time = 59;
 
 //array object defining 5 unique keys and values containing questions, choices, and an answer index
 const questions = [{
@@ -50,6 +50,10 @@ function populateRound() {
 function startQuiz() {
     currentQuestion = 0;
     populateRound();
+    setInterval(function() {
+        displayTime();
+        timerCountdown();
+    }, 1000);
     document.querySelector("#start-page").classList.add("hidden");
     document.querySelector("#quiz-page").classList.remove("hidden");
 }
@@ -58,23 +62,56 @@ function startQuiz() {
 function continueQuiz() {
     currentQuestion = currentQuestion + 1;
     if (currentQuestion === questions.length) {
+        console.log("gameover");
         document.querySelector("#end-page").classList.remove("hidden");
         document.querySelector("#quiz-page").classList.add("hidden");
     } else {
         populateRound();
+
     }
 }
-//look up how to send text input to local storage along with score
-function submitInitials() {
+//display if answer is correct show and add 5 points
+//display if answer is wrong  
+//when last question is answered stop timer
+//store time and points in local storage
+function checkAnswer(event) {
 
+    const selectedChoice = event.target.dataset.choice;
+    const question = questions[currentQuestion];
+    console.log(question.answer);
+    console.log(selectedChoice);
+    console.log(question.answer == selectedChoice);
+    if (question.answer == selectedChoice) {
+        document.querySelector(".right-wrong").textContent = "Yup!";
+
+        //add score
+    } else {
+        document.querySelector(".right-wrong").textContent = "Nope!"
+            //subtract time 
+        time = time - 5;
+
+    }
+
+    continueQuiz();
 }
+
+document.querySelector(".answer-section").addEventListener("click", checkAnswer);
+
+function displayTime() {
+    document.querySelector(".timer").textContent = time;
+}
+
+function timerCountdown() {
+    time = time - 1;
+}
+//look up how to send text input to local storage along with score
+
 
 //add event listeners to start, next, submit, and view high score buttons
 document.querySelector(".start").addEventListener("click", startQuiz);
 
-document.querySelector(".next-question").addEventListener("click", continueQuiz);
+document.querySelector(".answer").addEventListener("click", continueQuiz);
 
-document.querySelector(".submit").addEventListener("click", submitInitials);
 
 //add timer and figure out how to keep score/time 
 //add view high score window alert with info collected in local storage

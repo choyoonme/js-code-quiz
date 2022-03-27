@@ -7,6 +7,7 @@ body {
 header {
     padding: 0 25px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     background-color: antiquewhite;
 }
@@ -24,6 +25,7 @@ ul {
     width: 600px;
     height: 400px;
     margin: 10px auto;
+    padding-bottom: 10px;
     border: solid 2px black;
 }
 
@@ -46,16 +48,15 @@ ul {
 }
 
 .continue {
+    margin: 10px;
+    padding: 0 5px;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.next-question {
-    background-color: aliceblue;
-    color: black;
-    width: 100px;
-    height: 30px;
-    border-radius: 5px;
+.right-wrong {
+    text-align: right;
 }
 
 .hidden {
@@ -72,10 +73,14 @@ ul {
     margin-top: 95px;
 }
 
-.start-page-content,
-.end-page-content {
+.start-page-content {
     margin-top: 85px;
     text-align: center;
+}
+
+.end-page-content {
+    margin: 150px;
+    text-align: left;
 }
 
 .submit {

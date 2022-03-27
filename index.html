@@ -11,9 +11,9 @@
 
 <body>
     <header>
-        <p class="score">view high score</p>
-        <h1 class="title">Code Quiz</h1>
-        <p class="timer">timer</p>
+        <p class="high-score">High Score:</p>
+        <h1 class="title">JavaScript Code Quiz</h1>
+        <p>Timer:<span class="timer"></span></p>
     </header>
     <div class="container">
         <div class="quiz" id="start-page">
@@ -27,22 +27,24 @@
             <h1 id="question">QUESTION</h1>
             <div class="answer-section">
                 <ul>
-                    <li><button class="answer"></button></li>
-                    <li><button class="answer"></button></li>
-                    <li><button class="answer"></button></li>
-                    <li><button class="answer"></button></li>
+                    <li><button class="answer" data-choice="0"></button></li>
+                    <li><button class="answer" data-choice="1"></button></li>
+                    <li><button class="answer" data-choice="2"></button></li>
+                    <li><button class="answer" data-choice="3"></button></li>
                 </ul>
             </div>
             <hr>
             <div class="continue">
-                <button class="next-question">next</button></div>
+                <p class="points">Score:</p>
+                <p class="right-wrong"></p>
+            </div>
         </div>
     </div>
 
     <div class="quiz hidden" id="end-page">
         <div class="end-page-content">
-            <h1>Completed Quiz!</h1>
-            <p>Score:</p>
+            <h1>All done!</h1>
+            <p>Final Score:</p>
             <p>Time:</p>
             <p>Enter initials and submit to scoreboard:</p>
             <input type="text" />
