@@ -6,28 +6,28 @@ let currentAnswer = [];
 //array object defining 5 unique keys and values containing questions, choices, and an answer index
 const questions = [{
         text: "Inside which HTML element do we put JavaScript?",
-        choices: ["<link>", "<script>", "<java>", "<js>"],
-        answer: 2,
-    },
-    {
-        text: "question 2",
-        choices: ["a", "b", "c", "d"],
+        choices: ["a. <link>", "b. <script>", "c. <java>", "d. <js>"],
         answer: 1,
     },
     {
-        text: "question 3",
-        choices: ["a", "b", "c", "d"],
-        answer: 0,
-    },
-    {
-        text: "question 4",
-        choices: ["a", "b", "c", "d"],
+        text: "Which of the following variables can NOT change?",
+        choices: ["a. var", "b. let", "c. const", "d. $var"],
         answer: 2,
     },
     {
-        text: "question 5",
-        choices: ["a", "b", "c", "d"],
+        text: "Which pair of symbols is used to invoke a function?",
+        choices: ["a. [ ]", "b. ' '", "c. ||", "d. ()"],
         answer: 3,
+    },
+    {
+        text: "What method is used to stop a timer?",
+        choices: ["a. stopTimer", "b. endTime", "c. clearInterval", "d. none of the above"],
+        answer: 2,
+    },
+    {
+        text: "What does the letter 'i' stand for in a 'for loop'?",
+        choices: ["a. increment", "b. index", "c. interval", "d. none of the above"],
+        answer: 1,
     },
 ]
 

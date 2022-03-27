@@ -34,8 +34,11 @@ ul {
 .answer {
     background-color: cadetblue;
     color: black;
+    width: 150px;
+    height: auto;
     margin: 5px;
     border-radius: 5px;
+    text-align: left;
 }
 
 .answer-section {
