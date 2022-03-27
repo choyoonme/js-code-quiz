@@ -69,11 +69,13 @@ ul {
     margin-top: 95px;
 }
 
-.start-page-content {
+.start-page-content,
+.end-page-content {
     margin-top: 85px;
     text-align: center;
 }
 
 .submit {
-    background-color: aliceblue color: black;
+    background-color: aliceblue;
+    color: black;
 }
