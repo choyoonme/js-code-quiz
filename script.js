@@ -1,36 +1,41 @@
-/*Create variables and target in DOM:
-
--score
--timer
--button to start game
--question; use textContent to cycle through 5 different questions
--answer button id; use textContent to cycle through each set of 4 answers
--button to submit initials
-
-/*Functions:
-
--cycle through 5 questions with a set of 4 answers for each question
--show correct or incorrect using conditional statements and data-state: "hidden"
--start timer/game and run for duration of quiz using setInterval
--stop timer when all 5 questions are answered using clearInterval
--store the count of correctly answered questions and submit initials in localStorage    
-*/
-
-
-
+//declare variables in global scope
 const answerButtons = document.querySelectorAll(".answer");
 let currentQuestion = 0;
+let currentAnswer = [];
 
-// use object variable write an array
+//array object defining 5 unique keys and values containing questions, choices, and an answer index
 const questions = [{
-    text: "Inside which HTML element do we put JavaScript?",
-    choices: ["<link>", "<script>", "<java>", "<js>"],
-    answer: 2,
-}]
-const question = questions[currentQuestion];
-//target html text content and assign to current indexed question.key
+        text: "Inside which HTML element do we put JavaScript?",
+        choices: ["<link>", "<script>", "<java>", "<js>"],
+        answer: 2,
+    },
+    {
+        text: "question 2",
+        choices: ["a", "b", "c", "d"],
+        answer: 1,
+    },
+    {
+        text: "question 3",
+        choices: ["a", "b", "c", "d"],
+        answer: 0,
+    },
+    {
+        text: "question 4",
+        choices: ["a", "b", "c", "d"],
+        answer: 2,
+    },
+    {
+        text: "question 5",
+        choices: ["a", "b", "c", "d"],
+        answer: 3,
+    },
+]
 
-function populateButtons() {
+//populate questions and key values with a for loop wrapped in a function
+
+function populateRound() {
+    //declare variable to current question
+    const question = questions[currentQuestion];
     document.querySelector("#question").textContent = question.text
 
     //use for loop to apply to buttons
@@ -41,5 +46,35 @@ function populateButtons() {
         answerButton.textContent = choice;
     }
 }
+//target start button and add a hidden class to hide after clicked on and make quiz page appear
+function startQuiz() {
+    currentQuestion = 0;
+    populateRound();
+    document.querySelector("#start-page").classList.add("hidden");
+    document.querySelector("#quiz-page").classList.remove("hidden");
+}
+//use current question variable and add 1 to move to the next set of key values
+//use conditional to show end page after last question is answered
+function continueQuiz() {
+    currentQuestion = currentQuestion + 1;
+    if (currentQuestion === questions.length) {
+        document.querySelector("#end-page").classList.remove("hidden");
+        document.querySelector("#quiz-page").classList.add("hidden");
+    } else {
+        populateRound();
+    }
+}
+//look up how to send text input to local storage along with score
+function submitInitials() {
 
-document.querySelector(".nextQ").addEventListener("click", populateButtons);
+}
+
+//add event listeners to start, next, submit, and view high score buttons
+document.querySelector(".start").addEventListener("click", startQuiz);
+
+document.querySelector(".nextQ").addEventListener("click", continueQuiz);
+
+document.querySelector(".submit").addEventListener("click", submitInitials);
+
+//add timer and figure out how to keep score/time 
+//add view high score window alert with info collected in local storage

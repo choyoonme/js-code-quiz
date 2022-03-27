@@ -15,7 +15,10 @@
         <p class="timer">timer</p>
     </header>
     <div class="container">
-        <div class="quiz">
+        <div class="quiz" id="start-page">
+            <button class="start">Start</button>
+        </div>
+        <div class="quiz hidden" id="quiz-page">
             <h1 id="question">QUESTION</h1>
             <ul>
                 <li><button class="answer"></button></li>
@@ -27,9 +30,10 @@
         </div>
     </div>
     </div>
-
-    <input type="text" />
-    <button class="submit">submit</button>
+    <div class="quiz initials hidden" id="end-page">
+        <input type="text" />
+        <button class="submit">submit</button>
+    </div>
     <script src="script.js"></script>
 </body>
 

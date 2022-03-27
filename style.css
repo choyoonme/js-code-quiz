@@ -30,3 +30,12 @@ ul {
     color: black;
     margin: 5px;
 }
+
+.hidden {
+    display: none;
+}
+
+.start {
+    display: block;
+    margin: 0 auto;
+}
