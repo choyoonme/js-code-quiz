@@ -1,8 +1,9 @@
 //declare variables in global scope
 const answerButtons = document.querySelectorAll(".answer");
 let currentQuestion = 0;
-let time = 59;
-
+let time = 25;
+let score = 0;
+let intervalId;
 //array object defining 5 unique keys and values containing questions, choices, and an answer index
 const questions = [{
         text: "Inside which HTML element do we put JavaScript?",
@@ -50,7 +51,7 @@ function populateRound() {
 function startQuiz() {
     currentQuestion = 0;
     populateRound();
-    setInterval(function() {
+    intervalId = setInterval(function() {
         displayTime();
         timerCountdown();
     }, 1000);
@@ -62,16 +63,19 @@ function startQuiz() {
 function continueQuiz() {
     currentQuestion = currentQuestion + 1;
     if (currentQuestion === questions.length) {
-        console.log("gameover");
+        clearInterval(intervalId);
         document.querySelector("#end-page").classList.remove("hidden");
         document.querySelector("#quiz-page").classList.add("hidden");
+        document.querySelector(".final-score").innerText = score;
+        document.querySelector(".end-time").innerText = time;
+
     } else {
         populateRound();
 
     }
 }
 //display if answer is correct show and add 5 points
-//display if answer is wrong  
+//display if answer is wrong and subtract 10 seconds
 //when last question is answered stop timer
 //store time and points in local storage
 function checkAnswer(event) {
@@ -83,35 +87,71 @@ function checkAnswer(event) {
     console.log(question.answer == selectedChoice);
     if (question.answer == selectedChoice) {
         document.querySelector(".right-wrong").textContent = "Yup!";
-
-        //add score
+        addPoints();
+        // console.log(score);
+        document.querySelector(".points").textContent = score;
     } else {
         document.querySelector(".right-wrong").textContent = "Nope!"
-            //subtract time 
-        time = time - 5;
+        time = time - 10;
 
     }
 
     continueQuiz();
 }
 
-document.querySelector(".answer-section").addEventListener("click", checkAnswer);
+
+//add timer and figure out how to keep score/time 
 
 function displayTime() {
     document.querySelector(".timer").textContent = time;
 }
 
 function timerCountdown() {
+    if (time < 1) {
+        document.querySelector(".timer").textContent = 0;
+        clearInterval(intervalId);
+    };
     time = time - 1;
-}
-//look up how to send text input to local storage along with score
 
+}
+
+function addPoints() {
+    score = score + 5;
+}
+
+function handleSubmit() {
+    let store = localStorage.score;
+    if (store == undefined) {
+        let playerInfo = `${document.querySelector(".initials").value},${score}`
+        localStorage.score = playerInfo;
+    } else {
+        //local storage split by comma into an array
+        let storeArray = store.split(",");
+        let localStorageScore = parseInt(storeArray[1]);
+
+        if (localStorageScore < score) {
+            localStorage.score = playerInfo;
+        }
+
+    }
+
+    window.location.reload();
+}
+
+function viewScore() {
+
+}
 
 //add event listeners to start, next, submit, and view high score buttons
 document.querySelector(".start").addEventListener("click", startQuiz);
 
 document.querySelector(".answer").addEventListener("click", continueQuiz);
 
+document.querySelector(".answer-section").addEventListener("click", checkAnswer);
 
-//add timer and figure out how to keep score/time 
+document.querySelector(".submit").addEventListener("click", handleSubmit);
+
+document.querySelector(".high-score").addEventListener("click", viewScore);
+
 //add view high score window alert with info collected in local storage
+//look up how to send text input to local storage along with score
