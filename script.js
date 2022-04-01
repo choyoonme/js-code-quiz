@@ -2,9 +2,10 @@
 const answerButtons = document.querySelectorAll(".answer");
 let currentQuestion = 0;
 let time = 59;
-let score = 0;
+let currentScore = 0;
 let intervalId;
-let game = { highScores: [] };
+let scoreBoard = getScoreBoard();
+
 //use array object defining 5 unique keys and values containing questions, choices, and an answer index
 const questions = [{
         text: "Inside which HTML element do we put JavaScript?",
@@ -47,6 +48,27 @@ function populateRound() {
         answerButton.textContent = choice;
     }
 }
+//create function to display/start the timer when the game begins
+
+function displayTime() {
+    document.querySelector(".timer").textContent = time;
+}
+
+//create function to countdown and stop the timer when it reaches 0
+function timerCountdown() {
+    if (time < 1) {
+        clearInterval(intervalId);
+        document.querySelector(".timer").textContent = 0;
+    };
+    time = time - 1;
+
+}
+
+//create function to add 5 points when a question is correctly answered
+function addPoints() {
+    currentScore = currentScore + 5;
+}
+
 // target start button start timer when game begins, display the time, start countdown, hide start page, and show quiz page
 function startQuiz() {
     currentQuestion = 0;
@@ -58,6 +80,7 @@ function startQuiz() {
     document.querySelector("#start-page").classList.add("hidden");
     document.querySelector("#quiz-page").classList.remove("hidden");
 }
+
 //use current question variable and add 1 to continue to the next question/set of key values
 //use conditional to show end page after last question is answered or if the timer reaches 0
 function continueQuiz() {
@@ -66,12 +89,13 @@ function continueQuiz() {
         clearInterval(intervalId);
         document.querySelector("#end-page").classList.remove("hidden");
         document.querySelector("#quiz-page").classList.add("hidden");
-        document.querySelector(".final-score").innerText = score;
+        document.querySelector(".final-score").innerText = currentScore;
 
     } else {
         populateRound();
     }
 }
+
 //display if answer is correct and add 5 points
 //display if answer is wrong and subtract 10 seconds from timer
 //when last question is answered game is over and timer stops
@@ -79,14 +103,10 @@ function continueQuiz() {
 function checkAnswer(event) {
     const selectedChoice = event.target.dataset.choice;
     const question = questions[currentQuestion];
-    // console.log(question.answer);
-    // console.log(selectedChoice);
-    // console.log(question.answer == selectedChoice);
     if (question.answer == selectedChoice) {
         document.querySelector(".right-wrong").textContent = "Yup!";
         addPoints();
-        // console.log(score);
-        document.querySelector(".points").textContent = score;
+        document.querySelector(".points").textContent = currentScore;
     } else {
         document.querySelector(".right-wrong").textContent = "Nope!"
         time = time - 10;
@@ -94,55 +114,61 @@ function checkAnswer(event) {
     continueQuiz();
 }
 
-//create function to display/start the timer when the game begins
+function storeInitialsAndScore(player) {
+    scoreBoard.scores.push(player);
+    localStorage.setItem("game", JSON.stringify(scoreBoard))
+}
 
-function displayTime() {
-    document.querySelector(".timer").textContent = time;
-}
-//create function to countdown and stop the timer when it reaches 0
-function timerCountdown() {
-    if (time < 1) {
-        document.querySelector(".timer").textContent = 0;
-        clearInterval(intervalId);
-    };
-    time = time - 1;
 
+function getScoreBoard() {
+    let game = JSON.parse(localStorage.getItem("game"));
+    if (!game) {
+        game = { scores: [] }
+    }
+    return game
 }
-//create function to add 5 points when a question is correctly answered
-function addPoints() {
-    score = score + 5;
-}
+
 //first you define a string, array or object to localStorage.setItem("something") and use JSON.stringify
 //then parse out that string by using .getItem
-
 //create function to store score in local storage with initials 
 function handleSubmit() {
     const initials = document.querySelector(".initials").value;
-    const player = { initials, score };
-    localStorage.setItem("player", JSON.stringify(player));
-    //check if player has high score
+    const player = { initials, score: currentScore };
+    // check if player has higher score and replace
     let highScore = localStorage.getItem("highScore");
-    if (score > highScore) {
-        localStorage.setItem("highScore", score);
+    if (currentScore > highScore) {
+        localStorage.setItem("highScore", player);
     }
-    //save the player to an array of high scores
-    game.highScores.push(player);
-    //save game
-    saveGame();
-    window.location.reload();
+    storeInitialsAndScore(player);
+    viewScore();
 }
 
-function saveGame() {
-    localStorage.setItem("game", JSON.stringify(game))
+//create function that populates 5 sets of initials and scores in a list and updates text content with highscore 
+function renderScoreBoard() {
+    let ranking = getScoreBoard();
+    let list = document.querySelector(".player-list")
+    for (i = 0; i < list.children.length; i++) {
+        let entry = ranking.scores[i];
+        list.children[i].textContent = entry.initials + " - " + entry.score;
+        let highScore = localStorage.getItem("highScore");
+        document.querySelector(".highest").textContent = entry.initials + " - " + highScore;
+    }
 }
 
-function loadGame() {
-    game = JSON.parse(localStorage.getItem("game"));
-
-}
-
+//write html for score page that lists high score and initials & wire up to view high score button
+//use classList to hide or unhide classes associated with pages in DOM
 function viewScore() {
+    document.querySelector("#score-page").classList.remove("hidden");
+    document.querySelector("#start-page").classList.add("hidden");
+    document.querySelector("#quiz-page").classList.add("hidden");
+    document.querySelector("#end-page").classList.add("hidden");
+    renderScoreBoard();
+}
 
+function playAgain() {
+    document.querySelector("#score-page").classList.add("hidden");
+    document.querySelector("#start-page").classList.remove("hidden");
+    window.location.reload();
 }
 
 //add event listeners to start game, continue to next question, submit initials, and view high score
@@ -155,3 +181,5 @@ document.querySelector(".answer-section").addEventListener("click", checkAnswer)
 document.querySelector(".submit").addEventListener("click", handleSubmit);
 
 document.querySelector(".high-score").addEventListener("click", viewScore);
+
+document.querySelector(".back2game").addEventListener("click", playAgain);

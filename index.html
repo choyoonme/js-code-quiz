@@ -11,7 +11,7 @@
 
 <body>
     <header>
-        <button class="high-score">View High Score</button>
+        <p><a href="#score-page" class="high-score">View High Score</a></p>
         <h1 class="title">JavaScript Code Quiz</h1>
         <p>Timer:<span class="timer"></span></p>
     </header>
@@ -39,17 +39,29 @@
                 <p class="right-wrong"></p>
             </div>
         </div>
-    </div>
-
-    <div class="quiz hidden" id="end-page">
-        <div class="end-page-content">
-            <h1>All done!</h1>
-            <p>Final Score:<span class="final-score"></span></p>
-            <p>Enter initials and submit to scoreboard:</p>
-            <input type="text" class="initials" />
-            <button class="submit">submit</button>
+        <div class="quiz hidden" id="end-page">
+            <div class="end-page-content">
+                <h1 id="message">All done!</h1>
+                <p>Final Score:<span class="final-score"></span></p>
+                <p>Enter initials and submit to scoreboard:</p>
+                <input type="text" class="initials" />
+                <button class="submit">submit</button>
+            </div>
         </div>
-    </div>
+        <div class="quiz hidden" id="score-page">
+            <div class="score-page-content">
+                <h1>Score Board</h1>
+                <p>High Score:<span class="highest"></span></p>
+                <ol class="player-list">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ol>
+                <button class="back2game">Play Again</button>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>

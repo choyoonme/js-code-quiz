@@ -83,7 +83,23 @@ ul {
     text-align: left;
 }
 
+.score-page-content {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.player-list {
+    width: 100px;
+    background-color: aliceblue;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    ;
+}
+
+.back2game,
 .submit {
     background-color: aliceblue;
     color: black;
+    border-radius: 5px;
 }
