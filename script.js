@@ -4,7 +4,7 @@ let currentQuestion = 0;
 let time = 59;
 let score = 0;
 let intervalId;
-
+let game = { highScores: [] };
 //use array object defining 5 unique keys and values containing questions, choices, and an answer index
 const questions = [{
         text: "Inside which HTML element do we put JavaScript?",
@@ -112,8 +112,10 @@ function timerCountdown() {
 function addPoints() {
     score = score + 5;
 }
+//first you define a string, array or object to localStorage.setItem("something") and use JSON.stringify
+//then parse out that string by using .getItem
 
-//create frunction to store score in local storage with initials 
+//create function to store score in local storage with initials 
 function handleSubmit() {
     const initials = document.querySelector(".initials").value;
     const player = { initials, score };
@@ -123,10 +125,21 @@ function handleSubmit() {
     if (score > highScore) {
         localStorage.setItem("highScore", score);
     }
+    //save the player to an array of high scores
+    game.highScores.push(player);
+    //save game
+    saveGame();
     window.location.reload();
 }
 
+function saveGame() {
+    localStorage.setItem("game", JSON.stringify(game))
+}
 
+function loadGame() {
+    game = JSON.parse(localStorage.getItem("game"));
+
+}
 
 function viewScore() {
 
