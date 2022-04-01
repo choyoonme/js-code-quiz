@@ -67,7 +67,7 @@ function continueQuiz() {
         document.querySelector("#end-page").classList.remove("hidden");
         document.querySelector("#quiz-page").classList.add("hidden");
         document.querySelector(".final-score").innerText = score;
-        document.querySelector(".end-time").innerText = time;
+
     } else {
         populateRound();
     }
@@ -115,20 +115,18 @@ function addPoints() {
 
 //create frunction to store score in local storage with initials 
 function handleSubmit() {
-    let store = localStorage.score;
-    if (store == undefined) {
-        let playerInfo = `${document.querySelector(".initials").value},${score}`
-        localStorage.score = playerInfo;
-    } else {
-        //local storage split by comma into an array
-        let storeArray = store.split(",");
-        let localStorageScore = parseInt(storeArray[1]);
-        if (localStorageScore < score) {
-            localStorage.score = playerInfo;
-        }
+    const initials = document.querySelector(".initials").value;
+    const player = { initials, score };
+    localStorage.setItem("player", JSON.stringify(player));
+    //check if player has high score
+    let highScore = localStorage.getItem("highScore");
+    if (score > highScore) {
+        localStorage.setItem("highScore", score);
     }
     window.location.reload();
 }
+
+
 
 function viewScore() {
 
