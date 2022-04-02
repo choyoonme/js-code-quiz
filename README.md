@@ -3,7 +3,7 @@
 
 ## User Story
 
- This app presents a timed quiz consisting of 5 JavaScript multiple choice questions, featuring HTML and CSS powered by JavaScript code including functions, event listeners, object arrays, for loops, a timer, and local storage to keep a record of high scores. It will store high scores in the browser and it will have a clean, responsive user interface. 
+ This app presents a timed quiz on JavaScript consisting 5 multiple choice questions.  It features HTML and CSS powered by JavaScript code including: functions, event listeners, object arrays, for loops, a timer, and keeping a record of scores in local storage.
 
 
 ## Mock-Up
