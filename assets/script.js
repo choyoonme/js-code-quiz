@@ -141,9 +141,9 @@ function handleSubmit() {
     const initials = document.querySelector(".initials").value;
     const player = { initials, score: currentScore };
     // check if player has higher score and replace
-    let highScore = localStorage.getItem("highScore");
-    if (currentScore > highScore) {
-        localStorage.setItem("highScore", player);
+    let highScore = JSON.parse(localStorage.getItem("highScore"));
+    if (!highScore || currentScore > highScore.score) {
+        localStorage.setItem("highScore", JSON.stringify(player));
     }
     storeInitialsAndScore(player);
     viewScore();
@@ -153,14 +153,15 @@ function handleSubmit() {
 function renderScoreBoard() {
     let ranking = getScoreBoard();
     let list = document.querySelector(".player-list")
-    for (i = 0; i < list.children.length; i++) {
-        let entry = ranking.scores[i];
-        list.children[i].textContent = entry.initials + " - " + entry.score;
-        let highScore = localStorage.getItem("highScore");
-        document.querySelector(".highest").textContent = entry.initials + " - " + highScore;
+    for (i = 0; i < ranking.scores.length; i++) {
+        const entry = ranking.scores[i]
+        const liEntry = document.createElement("li")
+        liEntry.textContent = entry.initials + " - " + entry.score;
+        list.append(liEntry)
     }
+    let highScore = JSON.parse(localStorage.getItem("highScore"));
+    document.querySelector(".highest").textContent = highScore.initials + " - " + highScore.score;
 }
-
 //write html for score page that lists high score and initials & wire up to view high score button
 //use classList to hide or unhide classes associated with pages in DOM
 function viewScore() {
