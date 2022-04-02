@@ -7,8 +7,8 @@
 
 
 ## Mock-Up
-link to quiz:
+link to quiz: https://choyoonme.github.io/js-code-quiz/
 
-![5 question, timed quiz, records individual player's score](./Assets/js-code-quiz.png)
+![5 question, timed quiz, records individual player's score](/assets/js-code-quiz.png)
 
 
