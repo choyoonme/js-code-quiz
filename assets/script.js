@@ -72,6 +72,7 @@ function gameOver() {
     clearInterval(intervalId);
     document.querySelector("#quiz-page").classList.add("hidden");
     document.querySelector("#end-page").classList.remove("hidden");
+    document.querySelector(".timer").textContent = "Game Over";
 }
 // target start button start timer when game begins, display the time, start countdown, hide start page, and show quiz page
 function startQuiz() {
@@ -92,6 +93,7 @@ function continueQuiz() {
     if (currentQuestion === questions.length) {
         clearInterval(intervalId);
         document.querySelector("#end-page").classList.remove("hidden");
+        gameOver();
         document.querySelector("#quiz-page").classList.add("hidden");
         document.querySelector(".final-score").innerText = currentScore;
 
