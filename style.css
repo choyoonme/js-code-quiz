@@ -10,6 +10,7 @@ header {
     align-items: center;
     justify-content: space-between;
     background-color: antiquewhite;
+    border: solid olive;
 }
 
 ul {
@@ -24,9 +25,10 @@ ul {
 .quiz {
     width: 600px;
     height: 400px;
-    margin: 10px auto;
+    margin: 50px auto;
     padding-bottom: 10px;
-    border: solid 2px black;
+    border: solid 2px olive;
+    background-color: antiquewhite;
 }
 
 #question {
@@ -34,11 +36,12 @@ ul {
 }
 
 .answer {
-    background-color: cadetblue;
+    background-color: olive;
     color: black;
     width: 150px;
     height: auto;
     margin: 5px;
+    border: solid darkolivegreen;
     border-radius: 5px;
     text-align: left;
 }
@@ -48,15 +51,9 @@ ul {
 }
 
 .continue {
-    margin: 10px;
-    padding: 0 5px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-}
-
-.right-wrong {
-    text-align: right;
+    justify-content: center;
 }
 
 .hidden {
@@ -69,8 +66,9 @@ ul {
     font-size: 20px;
     font-weight: bold;
     border-radius: 5px;
-    background-color: aliceblue;
+    background-color: wheat;
     margin-top: 95px;
+    border: solid olive;
 }
 
 .start-page-content {
@@ -84,22 +82,24 @@ ul {
 }
 
 .score-page-content {
-    margin: 0 auto;
+    width: 300px;
+    height: 300px;
+    padding: 10px;
     text-align: center;
+    background-color: antiquewhite;
+    border: solid olive;
+    margin-top: 42px;
+    margin-left: 134px;
 }
 
 .player-list {
-    width: 100px;
-    background-color: aliceblue;
-    text-align: center;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    ;
+    text-align: left;
+    margin-bottom: 40px;
 }
 
 .back2game,
 .submit {
-    background-color: aliceblue;
+    background-color: wheat;
     color: black;
     border-radius: 5px;
 }

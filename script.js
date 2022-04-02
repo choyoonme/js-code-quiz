@@ -1,7 +1,7 @@
 //declare variables in global scope
 const answerButtons = document.querySelectorAll(".answer");
 let currentQuestion = 0;
-let time = 59;
+let time = 60;
 let currentScore = 0;
 let intervalId;
 let scoreBoard = getScoreBoard();
@@ -57,25 +57,29 @@ function displayTime() {
 //create function to countdown and stop the timer when it reaches 0
 function timerCountdown() {
     if (time < 1) {
-        clearInterval(intervalId);
-        document.querySelector(".timer").textContent = 0;
-    };
-    time = time - 1;
-
+        gameOver();
+    } else {
+        time = time - 1;
+    }
 }
 
 //create function to add 5 points when a question is correctly answered
 function addPoints() {
     currentScore = currentScore + 5;
 }
-
+//create function to end game and clear interval when timer reaches 0
+function gameOver() {
+    clearInterval(intervalId);
+    document.querySelector("#quiz-page").classList.add("hidden");
+    document.querySelector("#end-page").classList.remove("hidden");
+}
 // target start button start timer when game begins, display the time, start countdown, hide start page, and show quiz page
 function startQuiz() {
     currentQuestion = 0;
     populateRound();
     intervalId = setInterval(function() {
-        displayTime();
         timerCountdown();
+        displayTime();
     }, 1000);
     document.querySelector("#start-page").classList.add("hidden");
     document.querySelector("#quiz-page").classList.remove("hidden");
@@ -104,11 +108,11 @@ function checkAnswer(event) {
     const selectedChoice = event.target.dataset.choice;
     const question = questions[currentQuestion];
     if (question.answer == selectedChoice) {
-        document.querySelector(".right-wrong").textContent = "Yup!";
+        document.querySelector(".right-wrong").textContent = "👍";
         addPoints();
         document.querySelector(".points").textContent = currentScore;
     } else {
-        document.querySelector(".right-wrong").textContent = "Nope!"
+        document.querySelector(".right-wrong").textContent = "👎"
         time = time - 10;
     }
     continueQuiz();
