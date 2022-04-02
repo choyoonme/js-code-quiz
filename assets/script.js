@@ -146,6 +146,7 @@ function handleSubmit() {
         localStorage.setItem("highScore", JSON.stringify(player));
     }
     storeInitialsAndScore(player);
+    renderScoreBoard()
     viewScore();
 }
 
@@ -153,15 +154,18 @@ function handleSubmit() {
 function renderScoreBoard() {
     let ranking = getScoreBoard();
     let list = document.querySelector(".player-list")
+    list.innerHTML = "";
     for (i = 0; i < ranking.scores.length; i++) {
         const entry = ranking.scores[i]
         const liEntry = document.createElement("li")
         liEntry.textContent = entry.initials + " - " + entry.score;
-        list.append(liEntry)
+        list.append(liEntry);
     }
     let highScore = JSON.parse(localStorage.getItem("highScore"));
     document.querySelector(".highest").textContent = highScore.initials + " - " + highScore.score;
+
 }
+
 //write html for score page that lists high score and initials & wire up to view high score button
 //use classList to hide or unhide classes associated with pages in DOM
 function viewScore() {
@@ -169,7 +173,7 @@ function viewScore() {
     document.querySelector("#start-page").classList.add("hidden");
     document.querySelector("#quiz-page").classList.add("hidden");
     document.querySelector("#end-page").classList.add("hidden");
-    renderScoreBoard();
+    renderScoreBoard()
 }
 
 function playAgain() {
